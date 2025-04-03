@@ -1,5 +1,5 @@
 #nav{
-    position: fixed;
+    position:sticky;
     top: 0px;
     width: 100%;
     opacity: 0.9;
@@ -10,6 +10,7 @@ header{
     background-repeat: no-repeat;
     background-size: cover;
     height: 40em;
+    z-index: 999;
     
 }
 #logo{
@@ -19,6 +20,7 @@ header{
 }
 #logoImg{
     height: 2em;
+    z-index: 999;
 }
 #navItem{
     color: #111111;
