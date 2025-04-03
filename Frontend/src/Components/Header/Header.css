@@ -1,0 +1,68 @@
+#nav{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    opacity: 0.9;
+}
+header{
+    background-image: url('../../assets/img/bg4.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40em;
+    
+}
+#logo{
+    font-weight: 700;
+    color: red;
+    font-size:1.5em;
+}
+#logoImg{
+    height: 2em;
+}
+#navItem{
+    color: #111111;
+    margin: 1em;
+}
+#navItem:hover{
+    color: #fff;
+    background-color: gray;
+    border-radius: 10%;
+}
+@media(max-width:800px){
+    #navItem{
+        padding-left: 3em;
+    }
+    #navItem:hover{
+        border-radius: 0%;
+    }
+    #register:hover{
+        border-radius: 0%;
+    }
+}
+#register{
+    color: #111111;
+    margin: 1em;
+    /* margin-left: 41em; */
+}
+#register:hover{
+    color: #fff;
+    background-color: gray;
+    border-radius: 10%;
+}
+nav {
+    display: flex;
+    justify-content: flex-end;
+}
+#header-text{
+    margin-top: 6em;
+    color: #d9480a;
+
+}
+#header-para{
+    color: #fff;
+    display: inline-block;
+    margin-top: 14em;
+    font-size: 1.5em;
+
+}
