@@ -1,4 +1,5 @@
 const express=require("express")
+require('dotenv').config()
 const app=express()
 require('./db/db')
 const userRoute=require("./routers/userRouter")
@@ -11,7 +12,8 @@ app.use('/api',userRoute)
 
 
 
-app.listen(PORT||3000,()=>{
+
+app.listen(process.env.PORT||3000,()=>{
     console.log('server is start');
     
 })
