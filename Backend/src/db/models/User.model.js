@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const registerSchema=mongoose.Schema({
+const userSchema=new mongoose.Schema({
     userName:{
         type:String,
         required:true,
@@ -23,4 +23,4 @@ const registerSchema=mongoose.Schema({
     },
 
 },{timestamps :true })
-export const registerModel=mongoose.model('User',registerSchema)
+export const User=mongoose.model('User',userSchema)

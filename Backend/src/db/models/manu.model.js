@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const manuSchema=mongoose.Schema({
+const manuSchema=new mongoose.Schema({
     title:{
         type:String,
         required:true,
@@ -18,4 +18,4 @@ const manuSchema=mongoose.Schema({
     description:
      { type: String },
 },{timestamps:true}) 
-export const manuModel=mongoose.model('manuitem',manuSchema)
+export const Manuitem=mongoose.model('Manuitem',manuSchema)

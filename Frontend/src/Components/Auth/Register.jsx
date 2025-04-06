@@ -6,26 +6,29 @@ function Register() {
   const email=useRef()
   const password=useRef()
   const address=useRef()
+  const state=useRef()
   const handalForm=(e)=>{
     e.preventDefault()
+    console.log(state.current.value);
+    
     console.log('data submit');
-    const data={
-      userName:userName.current.value,
-      email:email.current.value,
-      password:password.current.value,
-      address:address.current.value
-    }
-    axios.post('http://localhost:3000/api/register',data)
-    .then((data)=>{console.log(data.data.response)
-      alert(data.data.response)
-    }
-    )
-    .catch((error)=>{console.log(error.message)
-      alert(error.message)
+    // const data={
+    //   userName:userName.current.value,
+    //   email:email.current.value,
+    //   password:password.current.value,
+    //   address:address.current.value
+    // }
+    // axios.post('http://localhost:3000/api/register',data)
+    // .then((data)=>{console.log(data.data.response)
+    //   alert(data.data.response)
+    // }
+    // )
+    // .catch((error)=>{console.log(error.message)
+    //   alert(error.message)
       
-    }
+    // }
 
-    )
+    // )
 
   }
   return (
@@ -73,6 +76,21 @@ function Register() {
                     id="Password"
                   />
                 </div>
+                <div className="col-md-7">
+                  <label htmlFor="inputCity" className="form-label">
+                    City
+                  </label>
+                  <input type="text" className="form-control" id="inputCity" />
+                </div>
+                <div className="col-md-7">
+                  <label htmlFor="inputState" className="form-label">
+                    State
+                  </label>
+                  <select id="inputState" required ref={state} className="form-select">
+                    <option disabled selected>select</option>
+                    <option>punjab</option>
+                  </select>
+                </div>
                 <div className="col-7">
                   <label htmlFor="Address" className="form-label">
                     Address
@@ -85,23 +103,6 @@ function Register() {
                     
                   />
                 </div>
-
-                <div className="col-md-7">
-                  <label htmlFor="inputCity" className="form-label">
-                    City
-                  </label>
-                  <input type="text" className="form-control" id="inputCity" />
-                </div>
-                <div className="col-md-7">
-                  <label htmlFor="inputState" className="form-label">
-                    State
-                  </label>
-                  <select id="inputState" className="form-select">
-                    <option >jalandhar</option>
-                    <option>punjab</option>
-                  </select>
-                </div>
-
                 <div className="col-12 md-auto mt-2">
                   <button type="submit" className="btn btn-primary">
                     Register
