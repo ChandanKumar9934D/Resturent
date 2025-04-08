@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-mongoose.connect(`${process.env.DBCONNECT}/${process.env.DBNAME}`)
+mongoose.connect(`${process.env.DBCONNECT}`)
 .then(()=>{
     console.log('db is connected');
     

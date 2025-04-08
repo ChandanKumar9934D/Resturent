@@ -18,4 +18,5 @@ const manuSchema=new mongoose.Schema({
     description:
      { type: String },
 },{timestamps:true}) 
-export const Manuitem=mongoose.model('Manuitem',manuSchema)
+ const Manuitem=mongoose.model('Manuitem',manuSchema)
+ module.exports=Manuitem
