@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import logo from "../../assets/img/logo.png";
 import { Link } from 'react-router-dom';
 function Navbar() {
+
+  const [User,setUser]=useState(null)
+  useEffect(()=>{
+   const storeUser= sessionStorage.getItem("User")
+    if(!!storeUser){
+
+
+      setUser(JSON.parse(storeUser));
+    }
+
+  },[User])
+  console.log(User);
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary" id="nav" style={{zIndex:"999"}}>
@@ -35,15 +49,27 @@ function Navbar() {
                       </Link>
                     </li>
                     <li className="nav-item ">
-                      <a className="nav-link " href="#" id="navItem">
+                      <Link className="nav-link " to={'contact'} id="navItem">
                         Contact us
-                      </a>
+                      </Link>
+                    </li>
+                    {!!User ?<> <li className="nav-item">
+                      <Link className="nav-link" id="navItem" to={'/logout'}>
+                        Logout
+                      </Link>
+                    </li></>
+                    :<><li className="nav-item">
+                      <Link className="nav-link" id="navItem" to={'/login'}>
+                        Login
+                      </Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" id="navItem" to={'/register'}>
                         Register
                       </Link>
-                    </li>
+                    </li></>}
+                    
+                    
                   </ul>
                   <form className="d-flex mx-3" role="search">
                     <input

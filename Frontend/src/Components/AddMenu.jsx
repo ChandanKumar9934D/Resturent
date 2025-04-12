@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
-import login from "../../assets/img/login.webp";
+// import login from "../../assets/img/login.webp";
 import axios from "axios";
-import "./Login.css";
+// import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-function Login() {
+function AddMenu() {
   
   
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    Title: "",
+    Price: "",
+    Name:''
   });
 
   const handelFormData = (e) => {
@@ -19,7 +20,7 @@ function Login() {
     e.preventDefault();
     const data = {
       email: formData.email,
-      password: formData.password,
+      Price: formData.password,
     };
 
     axios
@@ -49,24 +50,36 @@ function Login() {
       <div className="container my-5">
         <div className="row d-flex justify-content-center">
           <div className=" d-flex justify-content-center align-items-center ">
-            <h1 className="fw-bold text-danger mt-3">Login</h1>
+            <h1 className="fw-bold text-danger mt-3">Add Menu Item</h1>
           </div>
           <div className="row ">
-            <div className="col-12 col-md-6">
-              <img src={login} alt="" />
-            </div>
-            <div className="col-12 col-md-6">
-              <form onSubmit={handalForm} className="row my-4 ">
+          
+            <div className="col-12  ">
+              <form onSubmit={handalForm} className="row my-4  d-flex justify-content-center align-content-center">
                 <div className=" col-md-7">
-                  <label htmlFor="inputEmail4" className="form-label">
-                    Email
+                  <label htmlFor="Name" className="form-label">
+                    Dish Name
                   </label>
                   <input
                     onChange={handelFormData}
-                    type="email"
+                    type="text"
                     className="form-control"
-                    name="email"
-                    id="inputEmail4"
+                    name="Name"
+                    id="Name"
+                    value={formData.email}
+                    required
+                  />
+                </div>
+                <div className=" col-md-7">
+                  <label htmlFor="Title" className="form-label">
+                    Title
+                  </label>
+                  <input
+                    onChange={handelFormData}
+                    type="text"
+                    className="form-control"
+                    name="Title"
+                    id="Title"
                     value={formData.email}
                     required
                   />
@@ -74,26 +87,36 @@ function Login() {
 
                 <div className="col-md-7">
                   <label htmlFor="Password" className="form-label">
-                    Password
+                    Price
                   </label>
                   <input
                     onChange={handelFormData}
-                    name="password"
-                    type="password"
+                    name="Price"
+                    type="text"
+                    min={1}
                     className="form-control"
                     id="Password"
                     value={formData.password}
                     required
                   />
                 </div>
-                <div className="col-12 md-auto mt-2">
-                  <button type="submit" className="btn btn-primary my-2">
-                    login
+                <div className="col-md-7">
+                
+                  <input
+                    onChange={handelFormData}
+                    name="file"
+                    type="file"
+                    className="form-control"
+                    id="Password"
+                    required
+                  />
+                </div>
+                <div className="col-12 md-auto mt-2 d-flex justify-content-center align-content-center">
+                  <button type="submit" className="btn btn-primary my-2 px-5 py-2">
+                  Add
                   </button>
                   <br />
-                  <Link className="register-Box m-3" to={"/register"}>
-                    <span>New to Redchili ?</span> Create an Account
-                  </Link>
+                
                 </div>
               </form>
             </div>
@@ -104,4 +127,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AddMenu;

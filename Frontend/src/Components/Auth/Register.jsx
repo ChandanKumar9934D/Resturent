@@ -77,6 +77,7 @@ function Register() {
                     name="name"
                     className="form-control"
                     id="Name"
+                    required
                     value={formData.name}
                   />
                 </div>
@@ -88,6 +89,7 @@ function Register() {
                     onChange={handelFormData}
                     type="email"
                     className="form-control"
+                    required
                     name="email"
                     id="inputEmail4"
                     value={formData.email}
@@ -102,6 +104,7 @@ function Register() {
                     type="text"
                     maxLength="10"
                     pattern="\d{10}"
+                    required
                     className="form-control"
                     name="contact"
                     id="Contact"
@@ -116,6 +119,7 @@ function Register() {
                     onChange={handelFormData}
                     name="password"
                     type="password"
+                    required
                     className="form-control"
                     id="Password"
                     value={formData.password}
@@ -168,7 +172,7 @@ function Register() {
                   </label>
                   <input
                     value={formData.address}
-
+                    required
                     name="address"
                     onChange={handelFormData}
                     type="text"

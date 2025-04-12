@@ -1,11 +1,14 @@
 import React from "react";
+import grilledChicken from '../assets/img/grilled-chicken.jpg'
+// import card1 from "../assets/img/card1.jpg";
+
 
 const About = () => {
   return (
     <div className="container my-5">
       <div className="row align-items-center">
         <div className="col-md-6">
-          <img src="grilled-chicken.jpg" alt="Grilled Chicken" className="img-fluid rounded shadow" />
+          <img src={grilledChicken} alt="Grilled Chicken" className="img-fluid rounded shadow " />
         </div>
         <div className="col-md-6">
           <h2>

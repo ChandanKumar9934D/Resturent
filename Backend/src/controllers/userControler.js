@@ -40,7 +40,7 @@ const login = async (req, res) => {
       const myUser = await User.findOne({ email: req.body.email });
       if (!!myUser) {
         if (myUser.password == req.body.password) {
-          res.status(200).json({ message: `Hello ${myUser.userName}` });
+          res.status(200).json({ message: `Hello ${myUser.userName}`,data:myUser });
         } else {
           res.status(404).json({ message: "wrong Email/Password" });
         }

@@ -1,15 +1,13 @@
 import React, { useRef, useState } from "react";
 import login from "../../assets/img/login.webp";
 import axios from "axios";
-import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
-function Login() {
-  
-  
-  const navigate = useNavigate();
+import './Login.css'
+import { Link } from "react-router-dom";
+function Order() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+  
   });
 
   const handelFormData = (e) => {
@@ -20,27 +18,25 @@ function Login() {
     const data = {
       email: formData.email,
       password: formData.password,
+    
     };
 
     axios
-      .post("http://localhost:3000/api/login", data)
+      .post("http://localhost:3000/api/login",data)
       .then((data) => {
-        const User = 'chandan'
-        sessionStorage.setItem("User", JSON.stringify(User));
-        // sessionStorage.setItem("User",User);
-        // alert(data.data.message);
+        alert(data.data.message);
         setFormData({
           email: "",
-          password: "",
+          password: ""
+         
         });
-        navigate("/");
-       
       })
       .catch((error) => {
         alert(error.response.data.message);
         setFormData({
           email: "",
-          password: "",
+          password: ""
+         
         });
       });
   };
@@ -57,6 +53,7 @@ function Login() {
             </div>
             <div className="col-12 col-md-6">
               <form onSubmit={handalForm} className="row my-4 ">
+               
                 <div className=" col-md-7">
                   <label htmlFor="inputEmail4" className="form-label">
                     Email
@@ -71,7 +68,7 @@ function Login() {
                     required
                   />
                 </div>
-
+             
                 <div className="col-md-7">
                   <label htmlFor="Password" className="form-label">
                     Password
@@ -87,14 +84,18 @@ function Login() {
                   />
                 </div>
                 <div className="col-12 md-auto mt-2">
+              
                   <button type="submit" className="btn btn-primary my-2">
                     login
                   </button>
-                  <br />
-                  <Link className="register-Box m-3" to={"/register"}>
-                    <span>New to Redchili ?</span> Create an Account
-                  </Link>
+<br />
+<Link className="register-Box m-3"  to={'/register'}>
+                        <span>New to Redchili ?</span> Create an Account
+                      </Link>
+
                 </div>
+                 
+              
               </form>
             </div>
           </div>
@@ -104,4 +105,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Order;
