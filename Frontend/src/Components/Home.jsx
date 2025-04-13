@@ -1,10 +1,9 @@
 import React from "react";
 import "./Header/Header.css";
-// import card1 from '../../assets/img/card1.jpg'
 import card1 from "../assets/img/card1.jpg";
-import Navbar from "./Header/Navbar";
-import Footer from "./Footer/Footer";
+
 function Home() {
+
   return (
     <>
       <header className=" shadow">

@@ -1,4 +1,5 @@
 const User = require("../db/models/User.model");
+const Manuitem = require("../db/models/manu.model");
 const register = async (req, res) => {
   if (
     req.body.userName == "" ||
@@ -40,7 +41,9 @@ const login = async (req, res) => {
       const myUser = await User.findOne({ email: req.body.email });
       if (!!myUser) {
         if (myUser.password == req.body.password) {
-          res.status(200).json({ message: `Hello ${myUser.userName}`,data:myUser });
+          res
+            .status(200)
+            .json({ message: `Hello ${myUser.userName}`, data: myUser });
         } else {
           res.status(404).json({ message: "wrong Email/Password" });
         }
@@ -54,4 +57,16 @@ const login = async (req, res) => {
     }
   }
 };
-module.exports = { register, login };
+const addmenu = async (req, res) => {
+  const menuItem = req.body;
+  console.log(menuItem);
+
+  try {
+    res.json({
+      menuItem,
+    });
+  } catch (error) {
+    res.json({ error });
+  }
+};
+module.exports = { register, login, addmenu };

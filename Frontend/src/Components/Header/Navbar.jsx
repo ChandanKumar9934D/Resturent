@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import logo from "../../assets/img/logo.png";
 import { Link } from 'react-router-dom';
+import { userContext } from '../Context/Context';
 function Navbar() {
 
-  const [User,setUser]=useState(null)
+  const {User,setUser}=useContext(userContext)
+
+  let userName=sessionStorage.getItem("userName")
   useEffect(()=>{
-   const storeUser= sessionStorage.getItem("User")
-    if(!!storeUser){
 
-
-      setUser(JSON.parse(storeUser));
+    if (!User) {
+      
+      setUser(userName)
     }
-
-  },[User])
-  console.log(User);
-
-
+  },[])
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary" id="nav" style={{zIndex:"999"}}>

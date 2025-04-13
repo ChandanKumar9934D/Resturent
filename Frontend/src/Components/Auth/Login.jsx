@@ -1,12 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import login from "../../assets/img/login.webp";
 import axios from "axios";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { userContext } from "../Context/Context";
 function Login() {
-  
-  
   const navigate = useNavigate();
+  const { User,setUser } = useContext(userContext);
+  if(!!User){
+navigate('/')
+  }
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,16 +28,14 @@ function Login() {
     axios
       .post("http://localhost:3000/api/login", data)
       .then((data) => {
-        const User = 'chandan'
-        sessionStorage.setItem("User", JSON.stringify(User));
-        // sessionStorage.setItem("User",User);
-        // alert(data.data.message);
+        sessionStorage.setItem("userName", data.data.data.userName);
+        setUser(data.data.data.userName);
         setFormData({
           email: "",
           password: "",
         });
+        
         navigate("/");
-       
       })
       .catch((error) => {
         alert(error.response.data.message);
@@ -56,7 +57,7 @@ function Login() {
               <img src={login} alt="" />
             </div>
             <div className="col-12 col-md-6">
-              <form onSubmit={handalForm} className="row my-4 ">
+              <form onSubmit={handalForm} className="row my-4 " method="post" action={'/api/login'}>
                 <div className=" col-md-7">
                   <label htmlFor="inputEmail4" className="form-label">
                     Email

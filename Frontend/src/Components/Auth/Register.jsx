@@ -1,7 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import login from "../../assets/img/login.webp";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { userContext } from "../Context/Context";
 function Register() {
+  const navigate=useNavigate()
+  const {User,setUser}=useContext(userContext)
+  if(!!User){
+    navigate('/')
+      }
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,6 +46,8 @@ function Register() {
     axios
       .post("http://localhost:3000/api/register", data)
       .then((data) => {
+        sessionStorage.setItem("userName",formData.name);
+        setUser(formData.name);
         alert(data.data.response);
         setFormData({
           name: "",
@@ -49,6 +58,8 @@ function Register() {
           contact: "",
           state: "",
         });
+     
+        navigate('/')
       })
       .catch((error) => {
         alert(error.response.data.response);
@@ -66,7 +77,7 @@ function Register() {
               <img src={login} alt="" />
             </div>
             <div className="col-12 col-md-6">
-              <form onSubmit={handalForm} className="row my-4 ">
+              <form onSubmit={handalForm} className="row my-4" method="post" action={'api/register'}>
                 <div className=" col-md-7">
                   <label htmlFor="Name" className="form-label">
                     Name
