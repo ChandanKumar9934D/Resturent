@@ -9,7 +9,6 @@ function AddMenu() {
     description: "",
     price: "",
     title: "",
-    atAvailable: true,
   });
 
   const handelFormData = (e) => {
@@ -21,7 +20,6 @@ function AddMenu() {
       description: formData.description,
       price: formData.price,
       title: formData.title,
-      atAvailable: true,
     };
 
     axios
@@ -37,7 +35,7 @@ function AddMenu() {
         // navigate("/");
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
 
         // alert(error.response.data.message);
         setFormData({
@@ -71,7 +69,7 @@ function AddMenu() {
                     name="title"
                     id="Title"
                     value={formData.title}
-                    required
+                    // required
                   />
                 </div>
                 <div className=" col-md-7">
@@ -84,7 +82,7 @@ function AddMenu() {
                     className="form-control"
                     onChange={handelFormData}
                     value={formData.description}
-                    required
+                    // required
                   ></textarea>
                 </div>
                 <div className="col-md-7">
@@ -98,7 +96,7 @@ function AddMenu() {
                     className="form-control"
                     id="price"
                     value={formData.price}
-                    required
+                    // required
                   />
                 </div>
                 {/* <div className="col-md-7">

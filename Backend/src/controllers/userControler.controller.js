@@ -1,5 +1,5 @@
 const User = require("../db/models/User.model");
-const Manuitem = require("../db/models/manu.model");
+
 const register = async (req, res) => {
   if (
     req.body.userName == "" ||
@@ -57,16 +57,5 @@ const login = async (req, res) => {
     }
   }
 };
-const addmenu = async (req, res) => {
-  const menuItem = req.body;
-  console.log(menuItem);
 
-  try {
-    res.json({
-      menuItem,
-    });
-  } catch (error) {
-    res.json({ error });
-  }
-};
-module.exports = { register, login, addmenu };
+module.exports = { register, login };

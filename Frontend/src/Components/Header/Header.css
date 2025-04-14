@@ -25,11 +25,11 @@ header{
 #navItem{
     color: #111111;
     margin: 1em;
+    border-bottom: 3px solid transparent;
 }
 #navItem:hover{
-    color: #fff;
-    background-color: gray;
-    border-radius: 10%;
+    color: #FF5200;
+    border-bottom:3px solid #FF5200;
 }
 @media(max-width:800px){
     #navItem{
@@ -48,7 +48,7 @@ header{
     /* margin-left: 41em; */
 }
 #register:hover{
-    color: #fff;
+    color: #f10606;
     background-color: gray;
     border-radius: 10%;
 }

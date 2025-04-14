@@ -43,6 +43,11 @@ function Navbar() {
                       </Link>
                     </li>
                     <li className="nav-item">
+                      <Link className="nav-link" id="navItem" to={'/menu'}>
+                        Menu
+                      </Link>
+                    </li>
+                    <li className="nav-item">
                     <Link className="nav-link" id="navItem" to={'/about'}>
                         About
                       </Link>
@@ -70,7 +75,7 @@ function Navbar() {
                     
                     
                   </ul>
-                  <form className="d-flex mx-3" role="search">
+                  {/* <form className="d-flex mx-3" role="search">
                     <input
                       className="form-control me-2 btn-outline-danger"
                       type="search"
@@ -80,7 +85,7 @@ function Navbar() {
                     <button className="btn btn-outline-danger" type="submit">
                       Search
                     </button>
-                  </form>
+                  </form> */}
                 </div>
               </div>
             </nav>

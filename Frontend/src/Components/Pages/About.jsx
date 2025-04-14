@@ -1,5 +1,5 @@
 import React from "react";
-import grilledChicken from '../assets/img/grilled-chicken.jpg'
+import grilledChicken from '../../assets/img/grilled-chicken.jpg'
 // import card1 from "../assets/img/card1.jpg";
 
 
