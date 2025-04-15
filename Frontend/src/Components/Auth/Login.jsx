@@ -1,15 +1,19 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import login from "../../assets/img/login.webp";
 import axios from "axios";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../Context/Context";
+import { toast } from "react-toastify";
 function Login() {
   const navigate = useNavigate();
   const { User,setUser } = useContext(userContext);
-  if(!!User){
-navigate('/')
-  }
+  useEffect(()=>{
+
+    if(!!User){
+  navigate('/')
+    }
+  },[User])
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +38,7 @@ navigate('/')
           email: "",
           password: "",
         });
-        
+        toast.success("Login successfully!")
         navigate("/");
       })
       .catch((error) => {

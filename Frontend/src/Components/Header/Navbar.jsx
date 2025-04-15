@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Header.css'
 import logo from "../../assets/img/logo.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../Context/Context';
+import {  toast } from 'react-toastify';
 function Navbar() {
 
   const {User,setUser}=useContext(userContext)
-
+const nav=useNavigate()
   let userName=sessionStorage.getItem("userName")
   useEffect(()=>{
 
@@ -15,6 +16,15 @@ function Navbar() {
       setUser(userName)
     }
   },[])
+  const handelLogout=()=>{
+    if(window.confirm("Do you really want to logout?")){
+      toast.success('Logout successfully!')
+      setUser('')
+      sessionStorage.removeItem('userName')
+    }
+    
+
+  }
   
   return (
     <>
@@ -58,8 +68,9 @@ function Navbar() {
                       </Link>
                     </li>
                     {!!User ?<> <li className="nav-item">
-                      <Link className="nav-link" id="navItem" to={'/logout'}>
+                      <Link className="nav-link" id="navItem"  onClick={handelLogout}>
                         Logout
+                        
                       </Link>
                     </li></>
                     :<><li className="nav-item">

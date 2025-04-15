@@ -3,47 +3,16 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 // import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-function AddMenu() {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    description: "",
-    price: "",
-    title: "",
-  });
-
-  const handelFormData = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handalForm = (e) => {
-    e.preventDefault();
-    const data = {
-      description: formData.description,
-      price: formData.price,
-      title: formData.title,
-    };
-
-    axios
-      .post("http://localhost:3000/api/addmenu", data)
-      .then((data) => {
-        console.log(data);
-toast.success("Add new item successfully")
-        setFormData({
-          description: "",
-          price: "",
-          title: "",
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-toast.error(error.response.data.message)
-        setFormData({
-          description: "",
-          price: "",
-          title: "",
-        });
-      });
-  };
+function Boking() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+      description: "",
+      price: "",
+      title: "",
+    });
+    const handelFormData = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
   return (
     <>
       <div className="container my-5">
@@ -54,8 +23,7 @@ toast.error(error.response.data.message)
           <div className="row ">
             <div className="col-12  ">
               <form
-              
-                onSubmit={handalForm}
+                // onSubmit={handalForm}
                 className="row my-4  d-flex justify-content-center align-content-center"
               >
                 <div className=" col-md-7">
@@ -125,7 +93,7 @@ toast.error(error.response.data.message)
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default AddMenu;
+export default Boking

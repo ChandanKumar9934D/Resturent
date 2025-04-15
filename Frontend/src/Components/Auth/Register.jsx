@@ -3,6 +3,7 @@ import login from "../../assets/img/login.webp";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../Context/Context";
+import { toast } from "react-toastify";
 function Register() {
   const navigate=useNavigate()
   const {User,setUser}=useContext(userContext)
@@ -48,7 +49,6 @@ function Register() {
       .then((data) => {
         sessionStorage.setItem("userName",formData.name);
         setUser(formData.name);
-        alert(data.data.response);
         setFormData({
           name: "",
           email: "",
@@ -58,7 +58,7 @@ function Register() {
           contact: "",
           state: "",
         });
-     
+        toast.success("User Register successfully!")
         navigate('/')
       })
       .catch((error) => {

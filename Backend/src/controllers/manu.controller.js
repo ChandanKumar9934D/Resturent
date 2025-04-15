@@ -25,7 +25,6 @@ const addmenu = async (req, res) => {
             return res.status(409).json({ message: "Manu Item already exists" });
           }
     
-          console.error("Save error:", error);
           res.status(500).json({ message: "Internal server error" });
         }
       }
@@ -44,4 +43,17 @@ const addmenu = async (req, res) => {
     }
 
   }
-  module.exports = {  addmenu,getmenu };
+  const showmenu=async(req,res)=>{
+    try {
+      const menu= await Manuitem.find()
+      console.log(menu);
+      res.status(200).json({
+          response:menu
+      })
+  } catch (error) {
+      console.log(error.message);
+      
+  }
+
+  }
+  module.exports = {  addmenu,getmenu ,showmenu};

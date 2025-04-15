@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Master from "./Components/Master/Master";
 import NotFound from "./Components/Pages/NotFound";
 import About from "./Components/Pages/About";
@@ -8,9 +10,11 @@ import AddMenu from "./Components/Pages/AddMenu";
 import { ContextProvider } from "./Components/Context/Context";
 import Home from "./Components/Pages/Home";
 import Menu from "./Components/Pages/Menu";
+import Booking from "./Components/Pages/Booking/Boking";
 function App() {
   return (
     <ContextProvider>
+          <ToastContainer position="top-right" autoClose={3000}/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Master/>}>
@@ -21,6 +25,8 @@ function App() {
             <Route path="/addmenu" element={<AddMenu />} />
             <Route path="/login" element={<Login />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/booking" element={<Booking />} />
+
           </Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
