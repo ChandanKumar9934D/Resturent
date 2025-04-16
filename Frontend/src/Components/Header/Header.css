@@ -29,7 +29,14 @@ header{
 }
 #navItem:hover{
     color: #FF5200;
+    
+}
+@media(min-width:1000px){
+    #navItem:hover{
     border-bottom:3px solid #FF5200;
+        
+        
+    }
 }
 @media(max-width:800px){
     #navItem{
@@ -37,6 +44,7 @@ header{
     }
     #navItem:hover{
         border-radius: 0%;
+        
     }
     #register:hover{
         border-radius: 0%;

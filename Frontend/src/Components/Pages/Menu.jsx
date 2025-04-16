@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useId, useState } from "react";
 import card1 from "../../assets/img/card1.jpg";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BsCurrencyRupee } from "react-icons/bs";
+import { userContext } from "../Context/Context";
 
 function Menu() {
+  const { userId } = useContext(userContext);
+  const getUserToSession = sessionStorage.getItem("userId");
+  const [userDetaile, setUserDetaile] = useState("");
   let [menuItems, setMenuitems] = useState([]);
+
   const fetchdata = async () => {
+    if (!!userId) {
+      setUserDetaile(userId);
+    } else {
+      setUserDetaile(getUserToSession);
+    }
+    console.log(userDetaile);
+
     try {
       const data = await axios.get("http://localhost:3000/api/showmenu");
-      console.log(data.data.response);
 
       setMenuitems(data.data.response);
     } catch (error) {
@@ -17,8 +28,9 @@ function Menu() {
     }
   };
   useEffect(() => {
+    
     fetchdata();
-  }, [menuItems]);
+  }, [userDetaile]);
 
   return (
     <>
@@ -43,7 +55,10 @@ function Menu() {
                           {item.price}
                         </h5>
                         <p className="card-text">{item.description}</p>
-                        <Link href="#" className="btn btn-danger">
+                        <Link
+                          to={`/order/` + userDetaile + `/${item._id}`}
+                          className="btn btn-danger"
+                        >
                           Order
                         </Link>
                       </div>

@@ -6,7 +6,7 @@ import { userContext } from "../Context/Context";
 import { toast } from "react-toastify";
 function Register() {
   const navigate=useNavigate()
-  const {User,setUser}=useContext(userContext)
+  const {User,setUser,setUserId}=useContext(userContext)
   if(!!User){
     navigate('/')
       }
@@ -47,7 +47,9 @@ function Register() {
     axios
       .post("http://localhost:3000/api/register", data)
       .then((data) => {
+        sessionStorage.setItem("userId",data.data.user);
         sessionStorage.setItem("userName",formData.name);
+        setUserId(data.data.data._id)
         setUser(formData.name);
         setFormData({
           name: "",

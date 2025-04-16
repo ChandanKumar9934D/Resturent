@@ -7,7 +7,7 @@ import { userContext } from "../Context/Context";
 import { toast } from "react-toastify";
 function Login() {
   const navigate = useNavigate();
-  const { User,setUser } = useContext(userContext);
+  const { User,setUser,setUserId } = useContext(userContext);
   useEffect(()=>{
 
     if(!!User){
@@ -32,6 +32,8 @@ function Login() {
     axios
       .post("http://localhost:3000/api/login", data)
       .then((data) => {
+        setUserId(data.data.data._id)
+        sessionStorage.setItem("userId", data.data.data._id);
         sessionStorage.setItem("userName", data.data.data.userName);
         setUser(data.data.data.userName);
         setFormData({

@@ -4,6 +4,7 @@ import { BsCurrencyRupee } from "react-icons/bs";
 // import card1 from ".././assets/img/card1.jpg";
 import card1 from "../../assets/img/card1.jpg";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Home() {
   let [menuItems, setMenuitems] = useState([]);
@@ -56,9 +57,9 @@ function Home() {
                           {item.price}
                         </h5>
                         <p className="card-text">{item.description}</p>
-                        <a href="#" className="btn btn-danger">
+                        <Link to={'/order'} className="btn btn-danger">
                           Order
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

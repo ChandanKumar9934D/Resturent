@@ -10,7 +10,7 @@ import AddMenu from "./Components/Pages/AddMenu";
 import { ContextProvider } from "./Components/Context/Context";
 import Home from "./Components/Pages/Home";
 import Menu from "./Components/Pages/Menu";
-import Booking from "./Components/Pages/Booking/Boking";
+import Order from "./Components/Pages/Order/Order";
 function App() {
   return (
     <ContextProvider>
@@ -25,7 +25,7 @@ function App() {
             <Route path="/addmenu" element={<AddMenu />} />
             <Route path="/login" element={<Login />} />
             <Route path="/menu" element={<Menu />} />
-            <Route path="/booking" element={<Booking />} />
+            <Route path="/order/:userId/:productId" element={<Order />} />
 
           </Route>
           <Route path="/*" element={<NotFound />}></Route>

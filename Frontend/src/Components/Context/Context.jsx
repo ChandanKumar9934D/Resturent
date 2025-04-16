@@ -1,13 +1,18 @@
 import React, { createContext, useEffect, useState } from 'react'
 const userContext=createContext({
   User:'',
-  setUser:()=>{}
+  setUser:()=>{},
+  userId:'',
+  setUserId:()=>{}
+
 })
 function ContextProvider({children}) {
   const [User,setUser]=useState(null)
+  const[userId,setUserId]=useState('')
+  
 
   return (
-    <userContext.Provider value={{User,setUser}}>
+    <userContext.Provider value={{User,setUser,userId,setUserId}}>
       {children}
       
     </userContext.Provider>

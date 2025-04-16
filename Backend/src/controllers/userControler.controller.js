@@ -19,9 +19,12 @@ const register = async (req, res) => {
         address: data.address,
         contact: data.contact,
       });
-      await userRegister.save();
+      const result=await userRegister.save();
+      // console.log(result);
+      
       res.status(201).json({
         response: "user registered  successfully",
+        user:result._id
       });
     } catch (error) {
       if (error.code === 11000 && error.keyPattern.email) {

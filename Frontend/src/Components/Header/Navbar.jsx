@@ -6,7 +6,7 @@ import { userContext } from '../Context/Context';
 import {  toast } from 'react-toastify';
 function Navbar() {
 
-  const {User,setUser}=useContext(userContext)
+  const {User,setUser,setUserId}=useContext(userContext)
 const nav=useNavigate()
   let userName=sessionStorage.getItem("userName")
   useEffect(()=>{
@@ -20,7 +20,8 @@ const nav=useNavigate()
     if(window.confirm("Do you really want to logout?")){
       toast.success('Logout successfully!')
       setUser('')
-      sessionStorage.removeItem('userName')
+      setUserId('')
+      sessionStorage.clear()
     }
     
 
