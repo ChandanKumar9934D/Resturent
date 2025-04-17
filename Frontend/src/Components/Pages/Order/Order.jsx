@@ -4,30 +4,42 @@ import "./Order.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 const Order = () => {
-  let response
+  let response;
   const [formData, setFormData] = useState({
     name: "",
     price: "",
     quantity: 1,
   });
-  
+
   // const [name,setName]=useState('')
   const { userId, productId } = useParams();
   const nav = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
-      if (!userId || userId === "null" || userId === "undefined" || 
-        !productId || productId === "null" || productId === "undefined")  {
+      if (
+        !userId ||
+        userId === "null" ||
+        userId === "undefined" ||
+        !productId ||
+        productId === "null" ||
+        productId === "undefined"
+      ) {
         toast.error("First Create Account");
         nav("/menu");
         return;
       }
       try {
-         response = await axios.get(`http://localhost:3000/api/findmenu/${productId}`);
-    
-        setFormData((prev) => ({ ...prev, price: response.data.response.price ,   name:response.data.response.title}));
+        response = await axios.get(
+          `http://localhost:3000/api/findmenu/${productId}`
+        );
+
+        setFormData((prev) => ({
+          ...prev,
+          price: response.data.response.price,
+          name: response.data.response.title,
+        }));
       } catch (error) {
-        toast.error('server error!!!')
+        toast.error("server error!!!");
       }
     };
 
@@ -36,31 +48,25 @@ const Order = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Order Submitted:", formData);
-    console.log(formData.name);
-    
     try {
-      const data={
-        name:formData.name,
-        price:formData.price,
-        quantity:formData.quantity,
-        userId:userId,
-        productId:productId
-
-      }
-     let result= await axios.post("http://localhost:3000/api/order",data)
-     console.log(result);
-     
+      const Price=Number(formData.price)*Number(formData.quantity)
+      const data = {
+        name: formData.name,
+        price: Price,
+        quantity: formData.quantity,
+        userId: userId,
+        productId: productId,
+      };
+      let result = await axios.post("http://localhost:3000/api/order", data);
+      toast.success(result.data.message)
+      nav('/menu')
     } catch (error) {
-      console.log(error.message);
-      
+      toast.error(error.response.data.message)
     }
-   
   };
 
   return (
@@ -68,7 +74,7 @@ const Order = () => {
       <h2 className="text-center mb-4 text-danger">Place Your Order</h2>
       <div className="row justify-content-center align-content-center my-4">
         <div className="col-10 col-lg-4 shadow ">
-          <form onSubmit={handleSubmit} className="mt-2" >
+          <form onSubmit={handleSubmit} className="mt-2">
             <div className="mb-3">
               <label className="form-label" htmlFor="name">
                 Dish Name
@@ -89,7 +95,7 @@ const Order = () => {
                 Price
               </label>
               <input
-              readOnly
+                readOnly
                 type="text"
                 className="form-control"
                 id="price"

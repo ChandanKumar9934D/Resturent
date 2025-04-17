@@ -5,13 +5,14 @@ const app=express()
 require('./db/db')
 const userRoute=require("./routers/userRouter")
 const cors=require('cors')
+const orderRouter = require("./routers/orderRouter")
 const PORT=3000
 app.use(express.urlencoded())
 app.use(express.json())
 app.use(cors())
 app.use('/api',userRoute)
 app.use('/api',manuRouter)
-
+app.use('/api',orderRouter)
 
 
 

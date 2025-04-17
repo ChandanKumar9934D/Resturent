@@ -57,8 +57,8 @@ function Home() {
                           {item.price}
                         </h5>
                         <p className="card-text">{item.description}</p>
-                        <Link to={'/order'} className="btn btn-danger">
-                          Order
+                        <Link to={'/about'} className="btn btn-danger">
+                         More
                         </Link>
                       </div>
                     </div>
