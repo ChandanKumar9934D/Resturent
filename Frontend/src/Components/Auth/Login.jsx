@@ -7,7 +7,7 @@ import { userContext } from "../Context/Context";
 import { toast } from "react-toastify";
 function Login() {
   const navigate = useNavigate();
-  const { User,setUser,setUserId } = useContext(userContext);
+  const { User,setUser,setUserId ,setUserType,userType} = useContext(userContext);
   useEffect(()=>{
 
     if(!!User){
@@ -22,35 +22,111 @@ function Login() {
   const handelFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  // const handalForm = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     email: formData.email,
+  //     password: formData.password,
+  //   };
+
+  //   axios
+  //     .post("http://localhost:3000/api/login", data)
+  //     .then((data) => {
+  //        setUserType(data.data.data.userType)
+  //       console.log(data.data.data.userType);
+        
+  //       setUserId(data.data.data._id)
+  //       sessionStorage.setItem("userId", data.data.data._id);
+  //       sessionStorage.setItem("userName", data.data.data.userName);
+  //       sessionStorage.setItem("userType", data.data.data.userType);
+  //       setUser(data.data.data.userName);
+  //       setFormData({
+  //         email: "",
+  //         password: "",
+  //       });
+      
+  //       console.log(userType);
+  //       const type=sessionStorage.getItem("userType")
+     
+  //      if(!userType){
+  //       if( type==="2" || type==2){
+
+  //         navigate('/admin')
+  //         toast.success("Admin Register successfully!")
+  //       }else{
+  //         navigate('/')
+  //         toast.success(" Register successfully!")
+  //       }
+  //      }else{
+  //       if( userType==="2" || userType==2){
+
+  //         navigate('/admin')
+  //         toast.success("Admin Register successfully!")
+  //       }else{
+  //         navigate('/')
+
+  //       }
+  //      }
+  //       // navigate("/");
+  //     }).then(()=>{
+        
+  //     })
+  //     .catch((error) => {
+  //       alert(error.response.data.message);
+  //       setFormData({
+  //         email: "",
+  //         password: "",
+  //       });
+  //     });
+  // };
   const handalForm = (e) => {
     e.preventDefault();
+  
     const data = {
       email: formData.email,
       password: formData.password,
     };
-
+  
     axios
       .post("http://localhost:3000/api/login", data)
-      .then((data) => {
-        setUserId(data.data.data._id)
-        sessionStorage.setItem("userId", data.data.data._id);
-        sessionStorage.setItem("userName", data.data.data.userName);
-        setUser(data.data.data.userName);
+      .then((res) => {
+        const user = res.data.data;
+  
+        // Set values
+        setUserType(user.userType); // this is okay for later use
+        setUserId(user._id);
+        setUser(user.userName);
+  
+        // Session storage
+        sessionStorage.setItem("userId", user._id);
+        sessionStorage.setItem("userName", user.userName);
+        sessionStorage.setItem("userType", user.userType);
+  
         setFormData({
           email: "",
           password: "",
         });
-        toast.success("Login successfully!")
-        navigate("/");
+  
+        // Use the userType directly here
+        const type = String(user.userType); // Make sure it's a string
+  
+        if (type === "2") {
+          toast.success("Admin logged in successfully!");
+          navigate("/admin");
+        } else {
+          toast.success("User logged in successfully!");
+          navigate("/");
+        }
       })
       .catch((error) => {
-        alert(error.response.data.message);
+        toast.error(error.response?.data?.message || "Login failed!");
         setFormData({
           email: "",
           password: "",
         });
       });
   };
+  
   return (
     <>
       <div className="container my-5">

@@ -3,16 +3,20 @@ const userContext=createContext({
   User:'',
   setUser:()=>{},
   userId:'',
-  setUserId:()=>{}
+  setUserId:()=>{},
+  setUserType:()=>{},
+  userType:''
+  
 
 })
 function ContextProvider({children}) {
   const [User,setUser]=useState(null)
   const[userId,setUserId]=useState('')
+  const[userType,setUserType]=useState()
   
 
   return (
-    <userContext.Provider value={{User,setUser,userId,setUserId}}>
+    <userContext.Provider value={{User,setUser,userId,setUserId,userType,setUserType}}>
       {children}
       
     </userContext.Provider>

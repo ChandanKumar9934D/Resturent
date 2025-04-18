@@ -1,7 +1,10 @@
 const User = require("../db/models/User.model");
 
 const register = async (req, res) => {
-  if (
+  const email=await User.findOne({email:req.body.email})
+  console.log(email);
+  if(email=="null" || email==null){
+if (
     req.body.userName == "" ||
     req.body.password == "" ||
     req.body.email == ""
@@ -18,13 +21,15 @@ const register = async (req, res) => {
         password: data.password,
         address: data.address,
         contact: data.contact,
+        userType:1
       });
       const result=await userRegister.save();
       // console.log(result);
       
       res.status(201).json({
         response: "user registered  successfully",
-        user:result._id
+        user:result._id,
+        userType:result.userType
       });
     } catch (error) {
       if (error.code === 11000 && error.keyPattern.email) {
@@ -35,6 +40,10 @@ const register = async (req, res) => {
       res.status(500).json({ response: "Internal server error" });
     }
   }
+  }else{
+    res.status(409).json({ response: "Email already exists" });
+  }
+  
 };
 const login = async (req, res) => {
   if (req.body.email == "" || req.body.password == "") {

@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
 import login from "../../assets/img/login.webp";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { userContext } from "../Context/Context";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function Register() {
   const navigate=useNavigate()
   const {User,setUser,setUserId}=useContext(userContext)
@@ -49,7 +49,8 @@ function Register() {
       .then((data) => {
         sessionStorage.setItem("userId",data.data.user);
         sessionStorage.setItem("userName",formData.name);
-        setUserId(data.data.data._id)
+       
+        setUserId(data.data.user)
         setUser(formData.name);
         setFormData({
           name: "",
@@ -60,11 +61,14 @@ function Register() {
           contact: "",
           state: "",
         });
+      
         toast.success("User Register successfully!")
-        navigate('/')
+        console.log(userType,typeof userType);
+        
+        
       })
       .catch((error) => {
-        alert(error.response.data.response);
+        toast.error(error.response.data.response);
       });
   };
   return (
