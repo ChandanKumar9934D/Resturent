@@ -2,7 +2,6 @@ const User = require("../db/models/User.model");
 
 const register = async (req, res) => {
   const email=await User.findOne({email:req.body.email})
-  console.log(email);
   if(email=="null" || email==null){
 if (
     req.body.userName == "" ||
@@ -24,7 +23,6 @@ if (
         userType:1
       });
       const result=await userRegister.save();
-      // console.log(result);
       
       res.status(201).json({
         response: "user registered  successfully",
@@ -35,13 +33,11 @@ if (
       if (error.code === 11000 && error.keyPattern.email) {
         return res.status(409).json({ response: "Email already exists" });
       }
-
-      console.error("Save error:", error);
       res.status(500).json({ response: "Internal server error" });
     }
   }
   }else{
-    res.status(409).json({ response: "Email already exists" });
+    res.status(409).json({ response: "User already Register" });
   }
   
 };

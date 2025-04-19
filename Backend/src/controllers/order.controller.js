@@ -3,8 +3,6 @@ const Order = require("../db/models/order.model");
 const order = async (req, res) => {
   try {
     const order = req.body;
-    console.log(order);
-
     if (order.name == "" || order.price == "" || order.quntity == "") {
       res.status(400).json({
         message: "All fields are Required",
@@ -22,7 +20,6 @@ const order = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
     res.status(500).json({
       message: 'Internal error!!!!!!',
     });

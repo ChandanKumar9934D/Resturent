@@ -26,8 +26,7 @@ function AddMenu() {
     axios
       .post("http://localhost:3000/api/addmenu", data)
       .then((data) => {
-        console.log(data);
-toast.success("Add new item successfully")
+        toast.success("Add new item successfully");
         setFormData({
           description: "",
           price: "",
@@ -35,8 +34,7 @@ toast.success("Add new item successfully")
         });
       })
       .catch((error) => {
-        console.log(error);
-toast.error(error.response.data.message)
+        toast.error(error.response.data.message);
         setFormData({
           description: "",
           price: "",
@@ -54,7 +52,6 @@ toast.error(error.response.data.message)
           <div className="row ">
             <div className="col-12  ">
               <form
-              
                 onSubmit={handalForm}
                 className="row my-4  d-flex justify-content-center align-content-center"
               >

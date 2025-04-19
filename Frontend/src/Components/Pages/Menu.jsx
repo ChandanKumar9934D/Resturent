@@ -17,14 +17,12 @@ function Menu() {
     } else {
       setUserDetaile(getUserToSession);
     }
-    console.log(userDetaile);
 
     try {
       const data = await axios.get("http://localhost:3000/api/showmenu");
 
       setMenuitems(data.data.response);
     } catch (error) {
-      console.log(error.message);
     }
   };
   useEffect(() => {

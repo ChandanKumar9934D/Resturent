@@ -13,7 +13,6 @@ function Home() {
       const data = await axios.get("http://localhost:3000/api/menuitem");
       setMenuitems(data.data.response);
     } catch (error) {
-      console.log(error.message);
     }
   };
   useEffect(() => {

@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Register() {
   const navigate=useNavigate()
   const {User,setUser,setUserId}=useContext(userContext)
-  if(!!User){
-    navigate('/')
-      }
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,7 +61,6 @@ function Register() {
         });
       
         toast.success("User Register successfully!")
-        console.log(userType,typeof userType);
         
         
       })
