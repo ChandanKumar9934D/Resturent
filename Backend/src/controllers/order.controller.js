@@ -1,4 +1,5 @@
 const Order = require("../db/models/order.model");
+// const Order = require("../db/models/order.model");
 
 const order = async (req, res) => {
   try {
@@ -25,4 +26,12 @@ const order = async (req, res) => {
     });
   }
 };
-module.exports = { order };
+const getOrder=async(req,res)=>{
+  const order=await Order.find()
+  console.log(order);
+  res.status(200).json({
+    message:order
+  })
+  
+}
+module.exports = { order,getOrder };

@@ -65,5 +65,10 @@ const login = async (req, res) => {
     }
   }
 };
+const userInfoForOrder=async(req,res)=>{
+  console.log(req.params);
+  
+  // const userInfo= await User.findById()
+}
 
 module.exports = { register, login };

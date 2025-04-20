@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useId, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import card1 from "../../assets/img/card1.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";

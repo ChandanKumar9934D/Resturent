@@ -60,7 +60,7 @@ const nav=useNavigate()
                       </Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="nav-link" id="navItem" to={'/amin/showorder'}>
+                    <Link className="nav-link" id="navItem" to={'/admin/showorder'}>
                         Show Order
                       </Link>
                     </li>

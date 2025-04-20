@@ -13,6 +13,7 @@ import Order from "./Components/Pages/Order/Order";
 import AddMenu from "./Components/Pages/Admin/AddMenu";
 import AdminMaster from "./Components/Pages/Admin/AdminMaster";
 import AdminHome from "./Components/Pages/Admin/AdminHome";
+import ShowOrder from "./Components/Pages/Admin/ShowOrder";
 function App() {
   return (
     <ContextProvider>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin" element={<AdminMaster />}>
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/admin/addmenu" element={<AddMenu />} />
+            <Route path="/admin/showorder" element={<ShowOrder />} />
           </Route>
           <Route path="/" element={<Master />}>
             <Route path="/" element={<Home />} />
