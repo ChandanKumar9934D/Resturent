@@ -28,7 +28,6 @@ const order = async (req, res) => {
 };
 const getOrder=async(req,res)=>{
   const order=await Order.find()
-  console.log(order);
   res.status(200).json({
     message:order
   })

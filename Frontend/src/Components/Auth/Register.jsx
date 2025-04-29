@@ -61,7 +61,7 @@ function Register() {
         });
       
         toast.success("User Register successfully!")
-        
+        navigate('/')
         
       })
       .catch((error) => {
@@ -151,7 +151,7 @@ function Register() {
                     className="form-select"
                     value={formData.city}
                   >
-                    <option disabled selected>
+                    <option disabled selected defaultValue="">
                       select
                     </option>
                     {cities.map((citie, index) => (
@@ -173,7 +173,7 @@ function Register() {
                     required
                     className="form-select"
                   >
-                    <option value="" disabled selected>
+                    <option  disabled selected defaultValue="">
                       Select State
                     </option>
                     <option value="punjab">Punjab</option>

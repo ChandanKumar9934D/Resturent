@@ -48,7 +48,8 @@ const login = async (req, res) => {
     try {
       const myUser = await User.findOne({ email: req.body.email });
       if (!!myUser) {
-        if (myUser.password == req.body.password) {
+        const isMatch= await myUser.isPasswordCorrect(req.body.password)
+        if (isMatch) {
           res
             .status(200)
             .json({ message: `Hello ${myUser.userName}`, data: myUser });
@@ -66,7 +67,6 @@ const login = async (req, res) => {
   }
 };
 const userInfoForOrder=async(req,res)=>{
-  console.log(req.params);
   
   // const userInfo= await User.findById()
 }
